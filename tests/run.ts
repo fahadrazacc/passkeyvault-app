@@ -42,7 +42,9 @@ for (let i = 0; i < 200; i++) {
   assert.match(p, /[^A-Za-z0-9]/);
 }
 assert.doesNotMatch(randomPassword({ ...DEFAULT_GEN, length: 64, avoidAmbiguous: true }), /[Il1O0o]/);
-assert.equal(passphrase({ ...DEFAULT_GEN, words: 5, separator: '-', includeNumber: false }).split('-').length, 5);
+// Some EFF words contain '-', so count words with a separator that never appears in the list.
+for (let i = 0; i < 200; i++) assert.equal(passphrase({ ...DEFAULT_GEN, words: 5, separator: '|', includeNumber: false }).split('|').length, 5);
+assert.ok(WORDS.every((w) => !w.includes('|')));
 assert.match(generate({ ...DEFAULT_GEN, mode: 'pin', pinLength: 6 }), /^\d{6}$/);
 const counts = new Array(10).fill(0);
 for (let i = 0; i < 20000; i++) counts[randInt(10)]++;
