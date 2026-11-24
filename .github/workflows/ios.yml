@@ -1,0 +1,63 @@
+name: Build iOS app
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ios:
+    runs-on: macos-15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Use the newest Xcode on the runner
+        run: |
+          XC=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          echo "Using $XC"
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+
+      - name: Install and build web app
+        run: |
+          npm ci
+          npm run build
+          npx cap sync ios
+
+      - name: Build iPhone app (unsigned)
+        working-directory: ios/App
+        run: |
+          xcodebuild -project App.xcodeproj -scheme App -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build \
+            MARKETING_VERSION=0.1 CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build | tail -40
+          test -d build/Build/Products/Release-iphoneos/App.app
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/App.app Payload/
+          zip -qry PassKeyVault-unsigned.ipa Payload
+          ls -la PassKeyVault-unsigned.ipa
+
+      - name: Upload iPhone build
+        uses: actions/upload-artifact@v4
+        with:
+          name: passkeyvault-ios-unsigned
+          path: ios/App/PassKeyVault-unsigned.ipa
+
+      - name: Publish as a release (for sideloading)
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="ios-build-${{ github.run_number }}"
+          gh release create "$TAG" ios/App/PassKeyVault-unsigned.ipa \
+            --title "PassKey Vault iPhone build ${{ github.run_number }} (unsigned)" \
+            --notes "Unsigned iPhone app. Install with Sideloadly or AltStore using your Apple ID, or wait for the TestFlight version." \
+            --latest=false
