@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PassKey Vault — a private password manager for your phone and the web</title>
+  <meta name="description" content="PassKey Vault keeps your passwords, two-factor codes, cards and notes in one vault, encrypted on your device with your master password. Spots weak, reused and breached passwords. Imports from LastPass. Android, iPhone and web. Free." />
+  <meta name="theme-color" content="#0B0F19" />
+  <meta property="og:title" content="PassKey Vault — every password, locked down" />
+  <meta property="og:description" content="Passwords, 2FA codes, cards and notes in one encrypted vault. Android, iPhone and web." />
+  <meta property="og:image" content="img/desk-vault.webp" />
+  <link rel="icon" type="image/png" href="img/icon-192.png" />
+  <link rel="apple-touch-icon" href="img/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Opened from a home-screen install? Go straight to the app.
+    if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) location.replace('app/');
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top" id="top">
+    <div class="wrap top-in">
+      <a class="brand" href="#top" aria-label="PassKey Vault home">
+        <img src="img/icon-192.png" alt="" width="34" height="34" />
+        <span>PassKey Vault</span>
+      </a>
+      <nav class="top-nav" aria-label="Sections">
+        <a href="#features">Features</a>
+        <a href="#security">Security</a>
+        <a href="#lastpass">Switch from LastPass</a>
+        <a href="#download">Download</a>
+        <a href="#faq">Questions</a>
+      </nav>
+      <div class="top-cta">
+        <a class="btn ghost" href="app/">Open vault</a>
+        <a class="btn solid" href="#download">Get the app</a>
+      </div>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#lastpass">Switch from LastPass</a>
+      <a href="#download">Download</a>
+      <a href="#faq">Questions</a>
+      <a class="btn solid" href="app/">Open vault</a>
+      <a class="btn light" href="#download">Get the app</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap hero-in">
+        <div class="hero-copy">
+          <p class="eyebrow">Password manager · Android · iPhone · Web</p>
+          <h1>Every password,<br /><span class="accent">locked down.</span></h1>
+          <p class="lede">PassKey Vault keeps your passwords, two-factor codes, cards and notes in one place, encrypted on your device with a master password only you know. It tells you which passwords are weak, reused or leaked, and makes strong new ones in a tap.</p>
+          <div class="hero-actions">
+            <a class="btn solid big" href="app/">Open the web app</a>
+            <a class="btn light big" href="#download">Download for Android or iPhone</a>
+          </div>
+          <ul class="facts" aria-label="Key facts">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>AES-256, zero-knowledge</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z" /><path d="m9 12 2 2 4-4" /></svg>Breach check built in</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10" /></svg>Free, no ads</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <figure class="phone hero-phone">
+            <img src="img/phone-item.webp" alt="" width="585" height="1266" fetchpriority="high" />
+          </figure>
+          <div class="float gen">
+            <span class="float-label">New password</span>
+            <span class="gen-text mono" id="gen-text">Hq7vR%mXe29pL!cWs4Kz</span>
+            <span class="meter"><i></i><i></i><i></i><i></i></span>
+            <span class="float-sub">Very strong · billions of years to crack</span>
+          </div>
+          <div class="float otp">
+            <span class="float-label">GitHub · 2FA</span>
+            <span class="otp-row"><span class="otp-code" id="otp-code">482 913</span><svg class="otp-ring" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" /><circle class="otp-left" cx="20" cy="20" r="16" /></svg></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PLATFORMS ================= -->
+    <section class="platforms">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Your vault, on every screen</h2>
+          <p>A full vault on your laptop with a sidebar, list and details side by side, and a fast one-handed app on your phone with Face ID or fingerprint unlock.</p>
+        </div>
+        <figure class="browser">
+          <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>fahadrazacc.github.io/passkeyvault-app/app</span></div>
+          <img src="img/desk-vault.webp" alt="PassKey Vault in a web browser: folders in a sidebar, the item list with reused-password warnings, and a GitHub login with its two-factor code" width="1800" height="1125" loading="lazy" />
+        </figure>
+        <ul class="platform-list">
+          <li>
+            <h3>On the web</h3>
+            <p>Sidebar with folders and tools, list and details side by side. Works in Chrome, Edge, Safari and Firefox.</p>
+            <a href="app/">Open the web app</a>
+          </li>
+          <li>
+            <h3>On Android</h3>
+            <p>Fingerprint unlock, and the app hides itself from screenshots and the recent-apps screen.</p>
+            <a href="#download-android">Get the Android app</a>
+          </li>
+          <li>
+            <h3>On iPhone</h3>
+            <p>Add it to your Home Screen from Safari today. A native app with Face ID is in testing.</p>
+            <a href="#download-iphone">Use it on iPhone</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features" id="features">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Everything a password manager should do</h2>
+          <p>Quick to find what you need, honest about what's at risk, and out of the way the rest of the time.</p>
+        </div>
+
+        <article class="feature">
+          <figure class="phone"><img src="img/phone-vault.webp" alt="The vault: search, filters for logins, cards and notes, a warning that 4 passwords need attention, and an A to Z list with Reused and 2FA tags" width="585" height="1266" loading="lazy" /></figure>
+          <div class="feature-copy">
+            <h3>One vault for all of it</h3>
+            <p>Logins, payment cards, secure notes, Wi-Fi networks and identities, organised in folders with favourites and instant search. Copy a username or password with one tap; the clipboard clears itself after 30 seconds.</p>
+            <ul class="ticks">
+              <li>Several websites per login, plus your own extra fields</li>
+              <li>The last 10 passwords of every login, in case you need an old one</li>
+              <li>Tags on each item: Reused, Weak, Breached, 2FA</li>
+              <li>Auto-locks when you leave the app or stop using it</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="feature flip">
+          <figure class="phone"><img src="img/phone-item.webp" alt="A Salesforce login showing username, a very strong password with coloured digits and symbols, a 6-digit two-factor code with a countdown ring, website and notes" width="585" height="1266" loading="lazy" /></figure>
+          <div class="feature-copy">
+            <h3>Two-factor codes, built in</h3>
+            <p>When a website offers an authenticator app, paste its setup key into the login. PassKey Vault shows the 6-digit code with a countdown right next to the password, so signing in is one place, not two apps.</p>
+            <ul class="ticks">
+              <li>Works with any site that offers an authenticator app, such as Google, Microsoft and GitHub</li>
+              <li>Tap the code to copy it</li>
+              <li>Security check lists logins that still have no two-factor</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="feature">
+          <figure class="phone"><img src="img/phone-generator.webp" alt="Password generator: a 20-character random password, very strong, with length slider and switches for uppercase, lowercase, numbers and symbols" width="585" height="1266" loading="lazy" /></figure>
+          <div class="feature-copy">
+            <h3>Strong passwords in one tap</h3>
+            <p>Random passwords up to 64 characters, easy-to-type passphrases like <span class="mono inline">Velvet-Harbor-Quietly7-Lantern</span>, or PINs. Every one is made with your device's cryptographic random generator.</p>
+            <ul class="ticks">
+              <li>Choose the character types, or leave out look-alikes such as l, 1, O and 0</li>
+              <li>See the strength in bits and how long it would take to crack</li>
+              <li>Fill a strong password straight into a new login</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="feature flip">
+          <figure class="phone"><img src="img/phone-security.webp" alt="Security check: score 56 out of 100, 3 reused passwords, 1 weak, and a list of the sites sharing one password with Fix buttons" width="585" height="1266" loading="lazy" /></figure>
+          <div class="feature-copy">
+            <h3>Know which passwords put you at risk</h3>
+            <p>Security check gives your vault a score and shows exactly what to fix first: passwords found in data breaches, the same password used on several sites, weak ones, and ones you haven't changed in over a year.</p>
+            <ul class="ticks">
+              <li>Breach check against Have I Been Pwned, which holds hundreds of millions of leaked passwords</li>
+              <li>Your passwords never leave the device: only 5 characters of a fingerprint are sent</li>
+              <li>Tap Fix to change a password right there</li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="more">
+          <h3>And the rest you'd expect</h3>
+          <dl class="more-list">
+            <div><dt>Face ID and fingerprint</dt><dd>Your master password stays in the phone's secure hardware, released only after a scan.</dd></div>
+            <div><dt>Payment cards</dt><dd>Number, expiry, CVV and PIN kept hidden until you tap to show them.</dd></div>
+            <div><dt>Encrypted backups</dt><dd>Save a backup file anywhere; it opens only with your master password.</dd></div>
+            <div><dt>Slows down guessing</dt><dd>After 5 wrong master passwords the lock screen makes you wait, longer each time.</dd></div>
+            <div><dt>Dark mode</dt><dd>Follows your device, or choose light or dark yourself.</dd></div>
+            <div><dt>Export any time</dt><dd>Your data is yours: export to CSV to move to another app.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECURITY ================= -->
+    <section class="security" id="security">
+      <div class="wrap security-in">
+        <div class="security-copy">
+          <h2>Locked on your device, before it's saved anywhere</h2>
+          <p>Your master password creates the key that encrypts your vault, on the device itself. What's stored is scrambled data. Without your master password, it's unreadable to anyone, including us.</p>
+          <ol class="flow">
+            <li><strong>You unlock with your master password</strong><span>or Face ID / fingerprint. The key is made from your password with 600,000 rounds of PBKDF2, so guessing is slow and expensive.</span></li>
+            <li><strong>Everything is encrypted with AES-256-GCM</strong><span>the same standard banks and secure messengers use. The key exists only in memory while the vault is open.</span></li>
+            <li><strong>Nothing readable ever leaves the device</strong><span>Backups are the encrypted vault itself. The breach check sends only a 5-character piece of a hash, never a password.</span></li>
+          </ol>
+          <p class="fineprint">Because only you hold the key, nobody can reset your master password. If you forget it, the vault can't be opened, so turn on Face ID or fingerprint and keep an encrypted backup.</p>
+        </div>
+        <figure class="phone security-phone"><img src="img/phone-lock.webp" alt="PassKey Vault lock screen asking for the master password" width="585" height="1266" loading="lazy" /></figure>
+      </div>
+    </section>
+
+    <!-- ================= LASTPASS ================= -->
+    <section class="switch" id="lastpass">
+      <div class="wrap switch-in">
+        <figure class="phone"><img src="img/phone-import.webp" alt="Import screen: found 10 items in a LastPass export, with an Import button and steps for exporting from LastPass, Chrome and Apple Passwords" width="585" height="1266" loading="lazy" /></figure>
+        <div class="switch-copy">
+          <h2>Coming from LastPass? Bring everything.</h2>
+          <p>Export from your old password manager, choose the file in PassKey Vault, and you're done. Logins, two-factor keys, folders and favourites come across, and so do LastPass cards, Wi-Fi passwords and secure notes. The file is read on your device; nothing is uploaded.</p>
+          <ol class="steps big-steps">
+            <li>In LastPass: <em>Advanced options → Export → LastPass CSV file</em>.</li>
+            <li>In PassKey Vault: <em>Settings → Import passwords → Choose a file</em>.</li>
+            <li>Delete the exported file afterwards, as it isn't encrypted.</li>
+          </ol>
+          <p class="also">Also imports from <strong>Chrome, Edge, Brave, Apple Passwords, Safari, Firefox, Bitwarden and 1Password</strong>, and skips anything you already have.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DOWNLOAD ================= -->
+    <section class="download" id="download">
+      <div class="wrap">
+        <div class="section-intro">
+          <h2>Get PassKey Vault</h2>
+          <p>Free on every device. Each device keeps its own encrypted vault; move items between them with an encrypted backup file.</p>
+        </div>
+        <div class="dl-grid">
+          <section class="dl" id="download-android" aria-labelledby="dl-android">
+            <div class="dl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 10h10v8a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1zM7 10a5 5 0 0 1 10 0M9 7 7.5 4.5M15 7l1.5-2.5M4 11v5M20 11v5M10 19v2M14 19v2" /></svg></div>
+            <h3 id="dl-android">Android</h3>
+            <p>Download the app file and install it. New versions install over the top and keep your vault.</p>
+            <a class="btn solid" href="https://github.com/fahadrazacc/passkeyvault-app/releases/latest/download/PassKeyVault-debug.apk">Download for Android</a>
+            <ol class="steps">
+              <li>Open the downloaded <em>PassKeyVault-debug.apk</em>.</li>
+              <li>If asked, allow your browser to install unknown apps.</li>
+              <li>Tap Install, open PassKey Vault and create your master password.</li>
+            </ol>
+            <a class="sub-link" href="https://github.com/fahadrazacc/passkeyvault-app/releases">All Android versions</a>
+          </section>
+
+          <section class="dl" id="download-iphone" aria-labelledby="dl-iphone">
+            <div class="dl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M11 18h2" /></svg></div>
+            <h3 id="dl-iphone">iPhone</h3>
+            <p>Use PassKey Vault on iPhone today from Safari. It opens from your Home Screen like an app and works offline.</p>
+            <a class="btn solid" href="app/">Open in Safari</a>
+            <ol class="steps">
+              <li>Open this link in <em>Safari</em>.</li>
+              <li>Tap Share, then Add to Home Screen.</li>
+              <li>Open PassKey Vault from the new icon.</li>
+            </ol>
+            <p class="sub-note">A native iPhone app with Face ID is in testing. You can <a href="https://github.com/fahadrazacc/passkeyvault-app/releases?q=ios-build">sideload the current build</a> with Sideloadly or AltStore.</p>
+          </section>
+
+          <section class="dl" aria-labelledby="dl-web">
+            <div class="dl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg></div>
+            <h3 id="dl-web">Web</h3>
+            <p>Nothing to install. The full vault with sidebar and details on a computer, in any modern browser.</p>
+            <a class="btn solid" href="app/">Open the web app</a>
+            <ol class="steps">
+              <li>Create your master password.</li>
+              <li>Import from LastPass or your browser, or add your first login.</li>
+              <li>Run Security check to see what to fix.</li>
+            </ol>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq" id="faq">
+      <div class="wrap faq-in">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Is PassKey Vault free?</summary>
+            <p>Yes. There are no ads and no paid tier.</p>
+          </details>
+          <details>
+            <summary>Where are my passwords stored?</summary>
+            <p>On your device, encrypted with AES-256 using a key made from your master password. Nothing is sent to a server. Backups you save are the same encrypted vault, so they can't be read without your master password.</p>
+          </details>
+          <details>
+            <summary>What happens if I forget my master password?</summary>
+            <p>Your vault can't be opened without it, by us or anyone else. That's what makes it safe. Turn on Face ID or fingerprint so you rarely need to type it, set a hint, and keep an encrypted backup. If it's lost, you can erase the vault on the lock screen and start again.</p>
+          </details>
+          <details>
+            <summary>Do my phone and computer stay in sync?</summary>
+            <p>Not yet. Each device has its own vault today. To copy your items across, save an encrypted backup on one device and import it on the other. End-to-end encrypted sync is the next feature on the way.</p>
+          </details>
+          <details>
+            <summary>Can it fill in passwords in other apps and websites?</summary>
+            <p>Not yet. Today you copy the username, password or code with one tap and paste it. Autofill for Android, iPhone and browsers is planned.</p>
+          </details>
+          <details>
+            <summary>How does the breach check work without sending my passwords?</summary>
+            <p>PassKey Vault turns each password into a SHA-1 fingerprint and sends only its first 5 characters to Have I Been Pwned. The service returns every leaked fingerprint starting with those characters, and the match is checked on your device. Your password, and even its full fingerprint, never leave the phone.</p>
+          </details>
+          <details>
+            <summary>Why does Android warn me when installing?</summary>
+            <p>PassKey Vault is installed from this website rather than the Play Store, so Android asks you to confirm. Allow it once for your browser. A Play Store release is planned.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-in">
+        <div class="contact-intro">
+          <h2>Get in touch</h2>
+          <p>Found a problem or have an idea? Tell us on GitHub. Please never include passwords or other vault contents in a message.</p>
+        </div>
+        <div class="contact-links">
+          <a class="contact-card" href="https://github.com/fahadrazacc/passkeyvault-app/issues/new?title=Problem%3A%20&amp;body=What%20happened%3F%0A%0AWhat%20did%20you%20expect%3F%0A%0ADevice%20(Android%20%2F%20iPhone%20%2F%20web%20browser)%3A%0A">
+            <strong>Report a problem</strong><span>Something not working as it should</span>
+          </a>
+          <a class="contact-card" href="https://github.com/fahadrazacc/passkeyvault-app/issues/new?title=Idea%3A%20">
+            <strong>Suggest an idea</strong><span>A feature you'd like to see next</span>
+          </a>
+          <a class="contact-card" href="https://github.com/fahadrazacc/passkeyvault-app/issues">
+            <strong>See what's planned</strong><span>Open issues and ideas</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div class="foot-brand">
+        <a class="brand" href="#top"><img src="img/icon-192.png" alt="" width="30" height="30" /><span>PassKey Vault</span></a>
+        <p>A private password manager for Android, iPhone and the web.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="app/">Web app</a>
+        <a href="https://github.com/fahadrazacc/passkeyvault-app/releases/latest/download/PassKeyVault-debug.apk">Android APK</a>
+        <a href="#download-iphone">iPhone</a>
+        <a href="#lastpass">Switch from LastPass</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/fahadrazacc/passkeyvault-app">Source code</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

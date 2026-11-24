@@ -32,7 +32,12 @@ npm test         # crypto, 2FA codes, generator, strength, CSV import
 ## Builds (GitHub Actions, on every push to `main`)
 - **Android**: `.github/workflows/android-apk.yml` builds a test APK and publishes it as a GitHub Release (open the release on your phone, download, install). It's signed with the committed test key so every new build installs over the old one and keeps your vault. Use your own private key for the Play Store.
 - **iPhone**: `.github/workflows/ios.yml` builds an unsigned `.ipa` (install with Sideloadly / AltStore, or set up signing for TestFlight).
-- **Website**: `.github/workflows/pages.yml` deploys to GitHub Pages. One-time setup: repo **Settings → Pages → Source: GitHub Actions**. Must be served over HTTPS.
+- **Website**: `.github/workflows/pages.yml` deploys the landing page in `site/` to the root of GitHub Pages and the web app to `/app/` (same layout as Ledgerly):
+  - Website: https://fahadrazacc.github.io/passkeyvault-app/
+  - Web app: https://fahadrazacc.github.io/passkeyvault-app/app/
+  - Latest APK: https://github.com/fahadrazacc/passkeyvault-app/releases/latest/download/PassKeyVault-debug.apk
+
+   One-time setup: repo **Settings → Pages → Source: GitHub Actions**. Must be served over HTTPS.
 
 ## Code map
 - `src/vault.ts` – encryption, storage, backups, wrong-try slow-down
@@ -41,5 +46,6 @@ npm test         # crypto, 2FA codes, generator, strength, CSV import
 - `src/platform.ts` – clipboard, Face ID / fingerprint, saving files on phones
 - `src/store.tsx` – app state, encrypted save on every change, auto-lock
 - `src/screens/` – Lock, Vault, ItemDetail, EditItem, Generator, Security, Settings, Import
+- `site/` – landing page, privacy page and screenshots
 
 Passphrase word list: [EFF large wordlist](https://www.eff.org/dice), CC BY 3.0.

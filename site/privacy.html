@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy — PassKey Vault</title>
+  <meta name="theme-color" content="#0B0F19" />
+  <link rel="icon" type="image/png" href="img/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .doc { padding: 56px 0 96px; }
+    .doc .wrap { max-width: 760px; }
+    .doc h1 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 12px; }
+    .doc h2 { font-size: 24px; margin: 40px 0 10px; }
+    .doc p, .doc li { color: var(--soft); font-size: 17px; }
+    .doc strong { color: var(--text); }
+    .doc ul { padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+    .doc .updated { font-size: 15px; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="./"><img src="img/icon-192.png" alt="" width="34" height="34" /><span>PassKey Vault</span></a>
+      <div class="top-cta" style="display:flex; margin-left:auto"><a class="btn solid" href="app/">Open the web app</a></div>
+    </div>
+  </header>
+  <main class="doc">
+    <div class="wrap">
+      <h1>Privacy</h1>
+      <p class="updated">Last updated 24 November 2026</p>
+
+      <h2>The short version</h2>
+      <p>Your vault is encrypted on your device with a key made from your master password. Nothing readable is sent anywhere. PassKey Vault has no accounts, no servers that hold your data, no ads and no tracking.</p>
+
+      <h2>What is stored, and where</h2>
+      <ul>
+        <li><strong>On your device:</strong> your logins, two-factor keys, cards, notes and settings, encrypted with AES-256-GCM. The key is derived from your master password (PBKDF2-SHA256, 600,000 rounds) and exists only in memory while the vault is unlocked.</li>
+        <li><strong>Face ID / fingerprint:</strong> if you turn it on, your master password is kept in the iOS Keychain or Android Keystore, released only after a successful scan. It never leaves the phone.</li>
+        <li><strong>Backups you make:</strong> encrypted backup files, saved wherever you choose. CSV exports you choose to create are <em>not</em> encrypted; delete them after use.</li>
+        <li><strong>Before unlocking:</strong> a few non-secret settings, such as your theme, your optional password hint and the count of wrong unlock attempts.</li>
+      </ul>
+
+      <h2>The breach check</h2>
+      <p>Only when you press "Check for breaches", PassKey Vault contacts Have I Been Pwned (api.pwnedpasswords.com). For each password it sends just the first 5 characters of its SHA-1 hash. The service replies with all leaked hashes starting with those characters, and the comparison happens on your device. Your passwords and their full hashes are never sent.</p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>Erase the vault on a device at any time in Settings → Erase vault.</li>
+        <li>Export your data in Settings → Export as CSV.</li>
+        <li>Turn Face ID or fingerprint unlock on or off in Settings.</li>
+      </ul>
+
+      <h2>Your master password</h2>
+      <p>Your master password is never sent anywhere or stored as plain text. Because of this, nobody can reset it for you: if it's forgotten, the vault can't be opened.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy: open an issue on <a href="https://github.com/fahadrazacc/passkeyvault-app/issues">GitHub</a>. Never include passwords or vault contents.</p>
+    </div>
+  </main>
+  <footer class="foot"><div class="wrap foot-in"><a class="brand" href="./"><img src="img/icon-192.png" alt="" width="30" height="30" /><span>PassKey Vault</span></a><nav class="foot-nav"><a href="./">Home</a><a href="app/">Web app</a><a href="https://github.com/fahadrazacc/passkeyvault-app">Source code</a></nav></div></footer>
+</body>
+</html>
